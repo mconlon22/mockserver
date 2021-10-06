@@ -290,6 +290,10 @@ module.exports = Object.freeze({
                 }
             }
         }		
-    }		}	
+    }, 
+    PEPS:{ "peps" : [ { "Value" : "DOW_6_HMT_NM_SIM_DOB" } ] }
+
+
+}	
     
 );
