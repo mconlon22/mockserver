@@ -1,5 +1,5 @@
 module.exports = Object.freeze({
-    failedBankWizard: {"decisionElements": [{			
+    FAILED_BANK_WIZARD: {"decisionElements": [{			
         "applicantId":"MainApplicant_1" ,
         "serviceName":"BankWizardService",
         "decision":"MATCH",
@@ -36,7 +36,7 @@ module.exports = Object.freeze({
             "responseType":"severity",
             "responseMessage":"condition value"
         }]	}]	},
-    failedAuthentication: 
+    FAILED_AUTH: 
     {
         "decisionElements": [{
         "applicantId":"ApplicantId_1",

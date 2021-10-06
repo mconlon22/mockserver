@@ -13,23 +13,22 @@ app.listen(8080)
 app.get('/', (req, res) => {
   
   const reqData=req.body
-
+  console.log(values)
 
    
     
 
     if(reqData.hasOwnProperty('payload')){
-    
-      if(failValues.includes(bankResponse.response.decisionElements[0].decision)){
-        res.status(500).send(bankResponse.response)
+      if(failValues.FAIL_BANK_WIZARD_VALUES.includes(bankResponse.FAILED_BANK_WIZARD.decisionElements[0].decision)){
+        res.status(200).send(bankResponse.FAILED_BANK_WIZARD)
       }
-      else{
-        res.status(200).send(bankResponse.response)
-      }
+  }
+  if(!reqData.hasOwnProperty('application')){
+    if(failValues.FAIL_AUTH_VALUES.includes(bankResponse.FAILED_BANK_WIZARD.decisionElements[0].decision)){
+       res.status(200).send(bankResponse.FAILED_AUTH)
     }
-    else{
-      res.status(200).send(bankResponse.response)
-    }
-  });
+  }
+}
+  );
 
 
