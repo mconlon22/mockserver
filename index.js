@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
         res.status(200).send(bankResponse.FAILED_BANK_WIZARD)
       }
   }
-  if(!reqData.hasOwnProperty('application')){
+  if(!reqData.payload.hasOwnProperty('application')){
     if(failValues.FAIL_AUTH_VALUES.includes(bankResponse.FAILED_BANK_WIZARD.decisionElements[0].decision)){
        res.status(200).send(bankResponse.FAILED_AUTH)
     }
