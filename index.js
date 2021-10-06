@@ -1,5 +1,5 @@
 var bankResponse=require('./responses')  
-const failvalues=require('./failValues').failValues  
+const https = require('https');
 
 const express = require('express')
 
@@ -11,20 +11,42 @@ app.listen(8080)
 
 app.get('/', (req, res) => {
   
-  const data=req.body
-
-
-  if(data.hasOwnProperty('payload')){
+  const reqData=req.body
+  const url="https://raw.githubusercontent.com/mconlon22/mockserver/main/values.js"
+  https.get(url, (resp) => {
+  let data = '';
+  resp.on('data', (chunk) => {
+    data += chunk;
+  });
+  resp.on('end', () => {
+    console.log(data)
+   
+    const failvalues=JSON.parse(data).failValues
     
-    if(failvalues.includes(bankResponse.response.decisionElements[0].decision)){
-      res.status(500).send(bankResponse.response)
+
+    if(reqData.hasOwnProperty('payload')){
+    
+      if(failvalues.includes(bankResponse.response.decisionElements[0].decision)){
+        res.status(500).send(bankResponse.response)
+      }
+      else{
+        res.status(200).send(bankResponse.response)
+      }
     }
     else{
       res.status(200).send(bankResponse.response)
     }
-  }
-  else{
-    res.status(200).send(bankResponse.response)
-  }
+  });
+
+}).on("error", (err) => {
+  console.log("Error: " + err.message);
+});
+
+
+
+
+
+ 
 }
+
 )
