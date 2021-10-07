@@ -36,7 +36,7 @@ module.exports = Object.freeze({
             "responseType":"severity",
             "responseMessage":"condition value"
         }]	}]	},
-    FAILED_AUTH: 
+    FAILED_AUTH_AU01: 
     {
         "decisionElements": [{
         "applicantId":"ApplicantId_1",
