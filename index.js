@@ -19,6 +19,7 @@ app.get('/Authenticate', (req, res) => {
   if(firstName=="TOM"&&surName=="SMITH")   res.status(200).send(AUTH_RESPONSES.FAILED_AUTH_AU02)
   if(firstName=="JOHN"&&surName=="SMITH")   res.status(200).send(AUTH_RESPONSES.FAILED_AUTH_NA00)
   if(firstName=="MARTIN"&&surName=="SMITH")   res.status(200).send(AUTH_RESPONSES.FAILED_AUTH_RA00)
+  else res.status(200).send(AUTH_RESPONSES.FAILED_AUTH_AU01)
 }
   );
   app.get('/Peps', (req, res) => {
