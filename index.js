@@ -1,6 +1,9 @@
 var responses=require('./responses')  
 var failValues=require('./failValues')  
 const AUTH_RESPONSES=require('./AuthResponses')
+const auth = require("./middleware/auth");
+
+
 
 const express = require('express')
 
@@ -10,7 +13,7 @@ app.use(express.json())    // <==== parse request body as JSON
 
 app.listen(8080)
 
-app.get('/Authenticate', (req, res) => {
+app.get('/Authenticate',auth, (req, res) => {
   
   const firstName=req.body.payload.contacts[0].person.names[0].firstName
   const surName=req.body.payload.contacts[0].person.names[0].surName
@@ -22,19 +25,25 @@ app.get('/Authenticate', (req, res) => {
   else res.status(200).send(AUTH_RESPONSES.FAILED_AUTH_AU01)
 }
   );
-  app.get('/Peps', (req, res) => {
+  app.get('/Peps', auth,(req, res) => {
   
     const reqData=req.body
   
     res.status(200).send(responses.PEPS)  
   }
     );
-    app.get('/BankWizard', (req, res) => {
+    app.get('/BankWizard',auth, (req, res) => {
   
       const reqData=req.body
       
       res.status(200).send(responses.FAILED_BANK_WIZARD)
     }
       );
+
+
+
+      app.post("/welcome", auth, (req, res) => {
+        res.status(200).send("Welcome 🙌 ");
+      });
 
 
